@@ -1,7 +1,6 @@
 Project Title: labsoucetest
 Overview
 This project utilizes Playwright with Python to automate testing for a web application, specifically targeting the Sauce Labs website. The tests are organized using the Pytest framework, providing a structured and efficient way to manage and execute test cases.
-
 Features
 Automated testing of various functionalities of the Sauce Labs website.
 Utilization of Playwright's powerful features for browser automation.
