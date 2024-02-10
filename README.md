@@ -11,6 +11,7 @@ Clone the repository to your local machine.
 Install the required dependencies using pip:
 pip install playwright
 pip install pytest
+pip install pandas
 Usage
 Navigate to the project directory.
 Execute individual test scripts or the entire test suite using Pytest:
