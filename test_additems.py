@@ -7,7 +7,7 @@ from  playwright_base import browser, context, page
 from pages.Loginpage import LoginPage
 from pages.Items import Items
 from pages.Checkoutpage import CheckoutPage
-from pages.Helper import Helper
+from pages.Helper import helper
 from Excelreader import read_test_data
 
 # Read test data from Excel file
@@ -19,8 +19,8 @@ test_data_3 = read_test_data('data/test_data.xlsx', 'Sheet1')
 @pytest.mark.parametrize("username, password, item_name, expected_tax,first_name,last_name,zip_code", [(data['username'], data['password'], data['item_name'], data['expected_tax'],data['first_name'],data['last_name'],data['zip_code']) for data in test_data_3])
 
 def test_addremove_items(page, username, password, item_name, expected_tax, first_name, last_name, zip_code):
-    Log = LoginPage(page)
-    Log.login(username, password)
+    login_page = LoginPage(page)
+    login_page.login(username, password)
     item = Items(page)
     item.add_item(item_name)
     new_cart_count = item.show_items_count()
@@ -33,8 +33,8 @@ def test_addremove_items(page, username, password, item_name, expected_tax, firs
 # Read test data from CSV file
 @pytest.mark.parametrize("username, password, item_name, expected_tax,first_name,last_name,zip_code", [(data['username'], data['password'], data['item_name'], data['expected_tax'],data['first_name'],data['last_name'],data['zip_code']) for data in test_data_1])
 def test_checkout(page, username, password, item_name, expected_tax,first_name,last_name,zip_code):
-    Log = LoginPage(page)
-    Log.login(username, password)
+    login_page = LoginPage(page)
+    login_page.login(username, password)
     item = Items(page)
     item.add_item(item_name)
     new_cart_count = item.show_items_count()
@@ -52,8 +52,8 @@ def test_checkout(page, username, password, item_name, expected_tax,first_name,l
 
 @pytest.mark.parametrize("username, password, item_name, expected_tax",[(data['username'], data['password'], data['item_name'], data['expected_tax']) for data in test_data_1])
 def test_order_items_by_price_high_to_low(page, username, password, item_name, expected_tax):
-    Log = LoginPage(page)
-    Log.login(username, password)
+    login_page = LoginPage(page)
+    login_page.login(username, password)
     item = Items(page)
     item_prices_before_order = item.get_item_prices()
     item.order_pricehtl()
